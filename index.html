@@ -1,0 +1,240 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Issue Resolution Guide by whoisbenli</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Issue Resolution Guide</h1>
+        <p>Engineering Manual</p>
+
+
+        <p class="view"><a href="https://github.com/whoisbenli">View My GitHub Profile</a></p>
+
+      </header>
+      <section>
+        <h1>
+<a name="issue-resolution-guide" class="anchor" href="#issue-resolution-guide"><span class="octicon octicon-link"></span></a>Issue Resolution Guide</h1>
+
+<p>How to deal with FAILs.</p>
+
+<h2>
+<a name="how-to-deal-with-bugs" class="anchor" href="#how-to-deal-with-bugs"><span class="octicon octicon-link"></span></a>How to deal with bugs</h2>
+
+<h3>
+<a name="prevention" class="anchor" href="#prevention"><span class="octicon octicon-link"></span></a>Prevention</h3>
+
+<p>Don't write bugs in the first place!</p>
+
+<p>Keep things simple. Simpler things are simpler to build and understand</p>
+
+<ul>
+<li>simpler product design</li>
+<li>simpler implementation architecture</li>
+<li>simple code/logic</li>
+<li>simpler api interfaces</li>
+</ul><p>Why?</p>
+
+<ul>
+<li>simpler code is easier to reason about</li>
+<li>clever code means hard to debug</li>
+<li>be kind to your future self</li>
+</ul><p>Engineering Process &amp; Infrastructure</p>
+
+<ul>
+<li>design, code reviews</li>
+<li>unit tests, harnesses, automated testing</li>
+</ul><h3>
+<a name="failure-mode" class="anchor" href="#failure-mode"><span class="octicon octicon-link"></span></a>Failure Mode</h3>
+
+<p>Make it easy to triage bugs when they eventually do happen</p>
+
+<ul>
+<li>logs - make it easy to trace program state and execution</li>
+<li>keep intermediate info for debugging</li>
+<li>harnesses - for reproducing and isolating issues in controlled environment</li>
+</ul><h2>
+<a name="stages-of-an-issue" class="anchor" href="#stages-of-an-issue"><span class="octicon octicon-link"></span></a>Stages of an Issue</h2>
+
+<p>This standardizes the vocabulary around what state an issue is in.</p>
+
+<h3>
+<a name="filed" class="anchor" href="#filed"><span class="octicon octicon-link"></span></a>Filed</h3>
+
+<p>Issue has been documented in a ticketing system.</p>
+
+<h3>
+<a name="reproduced" class="anchor" href="#reproduced"><span class="octicon octicon-link"></span></a>Reproduced</h3>
+
+<p>You are able to consistently reproduce the problem</p>
+
+<h3>
+<a name="triaged" class="anchor" href="#triaged"><span class="octicon octicon-link"></span></a>Triaged</h3>
+
+<p>You know exactly what is going wrong and why, and you know how to fix it.
+This means that we can estimate how long it would take to fix the issue AND push the patch to the production. 
+As usual, be conservative in your commitment date to customers if CS needs one.</p>
+
+<h3>
+<a name="review" class="anchor" href="#review"><span class="octicon octicon-link"></span></a>Review</h3>
+
+<p>You have a fix waiting for review in gerrit. Link to the gerrit change.</p>
+
+<h3>
+<a name="fixed" class="anchor" href="#fixed"><span class="octicon octicon-link"></span></a>Fixed</h3>
+
+<p>The change is merged.</p>
+
+<h3>
+<a name="waiting" class="anchor" href="#waiting"><span class="octicon octicon-link"></span></a>Waiting</h3>
+
+<p>We are waiting on some third party to fix something. Usually just assign to Tech Services to follow up.</p>
+
+<h3>
+<a name="resolved" class="anchor" href="#resolved"><span class="octicon octicon-link"></span></a>Resolved</h3>
+
+<p>The fix is in production. Mark a jira as resolved only when it has been released. This tells FQA/CS to verify the fix and communicate that fact to our customers.</p>
+
+<h3>
+<a name="ignored" class="anchor" href="#ignored"><span class="octicon octicon-link"></span></a>Ignored</h3>
+
+<p>Issue is ignored because it is reproducible, or it we won't fix it for whatever reason.</p>
+
+<h3>
+<a name="test-case" class="anchor" href="#test-case"><span class="octicon octicon-link"></span></a>Test Case</h3>
+
+<p>Test cases added</p>
+
+<h3>
+<a name="verified" class="anchor" href="#verified"><span class="octicon octicon-link"></span></a>Verified</h3>
+
+<p>Stakeholder/QA verified issue is fixed and test case exists.</p>
+
+<h3>
+<a name="process-notes" class="anchor" href="#process-notes"><span class="octicon octicon-link"></span></a>(Process Notes)</h3>
+
+<p>Please update JIRA as progress is made
+Update Immune system field, if N/A, include good reasons why!, gerrit change url
+Include postmortem in the jira. Level of detail should correspond to severity and complexity of issue.</p>
+
+<h2>
+<a name="priorities" class="anchor" href="#priorities"><span class="octicon octicon-link"></span></a>Priorities</h2>
+
+<h3>
+<a name="critical" class="anchor" href="#critical"><span class="octicon octicon-link"></span></a>Critical</h3>
+
+<p>Work until fixed, no sleep, detailed postmortem required</p>
+
+<h3>
+<a name="high" class="anchor" href="#high"><span class="octicon octicon-link"></span></a>High</h3>
+
+<p>Stop and fix
+If discovered by customer, eta + daily updates</p>
+
+<h3>
+<a name="medium" class="anchor" href="#medium"><span class="octicon octicon-link"></span></a>Medium</h3>
+
+<p>Schedule - e.g. 1 per week. Put it in the plan.</p>
+
+<h2>
+<a name="what-you-should-know-or-ask-about-every-issue" class="anchor" href="#what-you-should-know-or-ask-about-every-issue"><span class="octicon octicon-link"></span></a>What you should know or ask about every issue</h2>
+
+<h3>
+<a name="source" class="anchor" href="#source"><span class="octicon octicon-link"></span></a>Source</h3>
+
+<p>How did we find out about the issue?</p>
+
+<ul>
+<li>automated tests, staging, qa, uat, internal users, customer report?</li>
+</ul><h3>
+<a name="triage-priority" class="anchor" href="#triage-priority"><span class="octicon octicon-link"></span></a>Triage Priority</h3>
+
+<p>What's the initial priority and criticality?
+Is it severe enough to consider a rollback if caused by a recent release?</p>
+
+<h3>
+<a name="account" class="anchor" href="#account"><span class="octicon octicon-link"></span></a>Account</h3>
+
+<p>What is the errant behavior?
+What are the steps taken to reproduce it?
+Was there an active modification of the running system? What was the timing and sequence of events?</p>
+
+<ul>
+<li>Deployments, configuration, migrations, etc.
+What is the expected behavior?</li>
+</ul><h3>
+<a name="scope" class="anchor" href="#scope"><span class="octicon octicon-link"></span></a>Scope</h3>
+
+<p>How does it impact the customer? Which customers?
+What parts of the product are affected?
+Could this be more of a product design bug?</p>
+
+<h3>
+<a name="reproduction" class="anchor" href="#reproduction"><span class="octicon octicon-link"></span></a>Reproduction</h3>
+
+<p>Be able to deterministically reproduce the issue
+If the issue was found in a prerelease version, is it also found in production?
+Make is as easy as possible to reproduce the issue (configure test ads, harnesses, etc)</p>
+
+<ul>
+<li>This way, colleagues downstream don't have to duplicate work.</li>
+</ul><h3>
+<a name="triage" class="anchor" href="#triage"><span class="octicon octicon-link"></span></a>Triage</h3>
+
+<p>When was the issue introduced? By who? Who else was involved?
+Under what circumstances does it happen, or not happen?</p>
+
+<p>Isolate the issue - what is the smallest case (use harness/unit tests) that reproduces the issue?
+Figure out projects affected - client vs server vs console vs db, etc
+Eliminate causes by examining scope across dimensions - pubs, ads, integration types, ad types, client platform types
+Could it be caused by an external party? Get proof if so, so Tech Services can communicate.</p>
+
+<p>What part of the code is causing the issue and why? Use debugger, logs</p>
+
+<p>*In light of this new information, has the priority changed?</p>
+
+<h3>
+<a name="fix" class="anchor" href="#fix"><span class="octicon octicon-link"></span></a>Fix</h3>
+
+<p>What needs to be done to fix the issue? How long will it take? What can we commit to?
+Could it potentially introduce other problems? How risky is it?
+Is it a symptom of a larger design issue? Should that be fixed as well?
+Could the same class of bugs be present elsewhere? Should a more thorough code audit be performed?
+Create an automated test case to prevent regressions.</p>
+
+<h3>
+<a name="postmortem" class="anchor" href="#postmortem"><span class="octicon octicon-link"></span></a>Postmortem</h3>
+
+<p>Was the issue verified to be fixed by the stakeholders?
+Why was the issue not caught by our product development process?
+Is it the result of a common practice that should be discontinued?
+Does everyone know what to do to prevent this from happening again?
+Do we need better infrastructure to identify bugs?</p>
+
+<h3>
+<a name="follow-up-actions" class="anchor" href="#follow-up-actions"><span class="octicon octicon-link"></span></a>Follow up Actions</h3>
+
+<p>How do we change our product development process to ensure that this class of issues do not happen again?</p>
+
+<ul>
+<li>prd, design review, implementation, unit tests, integration tests, code review, qa, deployment</li>
+</ul><p>If longer term effort is required to change the process or introduce new infrastructure, What is being done in the meantime?</p>
+      </section>
+      <footer>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
