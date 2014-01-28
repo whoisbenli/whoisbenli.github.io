@@ -64,6 +64,8 @@ Use the standard notation for the document generator for that platform.
 
 Each logical module - e.g. class, should have a brief description of what service it provides, what it does, and perhaps point to a larger document that describes how it fits in the big picture.
 
+Methods and properties should have short blurbs, and describe any mutations to the instance state, or if it does any I/O.
+
 Include comments for anything that may not be immediately obvious to the reader of the code, for example:
 
 - Where the logic is complex
@@ -76,7 +78,7 @@ Remember to update the documentation/comments, or even remove them should the co
 
 ### Style
 
-Follow coding style guidelines for the platform. (We have style guide for ActionScript 3 and JavaScript)
+Follow coding style guidelines for the platform. (We have a style guide for ActionScript 3 and JavaScript)
 
 ### Samples
 
